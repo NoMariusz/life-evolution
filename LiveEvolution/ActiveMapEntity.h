@@ -1,15 +1,15 @@
 #pragma once
+#include "main.h"
 #include "MapEntity.h"
-#include <list>
 
 using namespace std;
 
 class ActiveMapEntity : public MapEntity
 {
-	list<list<MapEntity*>> mapReference;
+	MapArrayType* mapPointer;
 
 public:
-	ActiveMapEntity(int x, int y, list<list<MapEntity*>> map);
+	ActiveMapEntity(int x, int y, MapArrayType* map);
 	virtual void onTick() = 0;
 };
 

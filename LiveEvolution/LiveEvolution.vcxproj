@@ -131,13 +131,19 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="LiveEvolution.cpp" />
     <ClCompile Include="MapEntity.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveMapEntity.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MapEntity.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="Plant.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

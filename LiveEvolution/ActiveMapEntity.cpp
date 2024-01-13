@@ -1,3 +1,3 @@
 #include "ActiveMapEntity.h"
 
-ActiveMapEntity::ActiveMapEntity(int x, int y, list<list<MapEntity*>> map) : MapEntity(x, y), mapReference(map) {};
+ActiveMapEntity::ActiveMapEntity(int x, int y, MapArrayType* map) : MapEntity(x, y), mapPointer(map) {};

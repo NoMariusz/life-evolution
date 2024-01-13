@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Plant::Plant(int x, int y, list<list<MapEntity*>> map) : ActiveMapEntity(x, y, map) {};
+Plant::Plant(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map), energy(1), growProgress(0) {};
 
 int Plant::getEnergy()
 {
