@@ -15,9 +15,13 @@ MapEntityType Plant::getType() {
 }
 
 void Plant::drawSign() {
-    cout << "Plant is drawing sign...";
+    cout << "\33[0;32;49m"  << this->energy << "\033[0m";
 }
 
 void Plant::onTick() {
-    cout << "Plant is performing onTick...";
+    growProgress++;
+    if (growProgress > constants::TICKS_TO_PLANT_GROW) {
+        this->energy++;
+        growProgress = 0;
+    }
 }

@@ -1,15 +1,15 @@
 #include "App.h"
 #include "MapManager.h"
+#include "ActiveMapEntity.h"
 #include <iostream>
 
 
 using namespace std;
 
 App::App() {
-	// initialising a map
 	for (auto& row : map) {
 		for (MapEntity*& entity : row) {
-			entity = nullptr;  // You can initialize with some default value or nullptr
+			entity = nullptr;
 		}
 	}
 }
@@ -34,4 +34,13 @@ void App::generateMap()
 void App::onTick()
 {
 	cout << "Tick..." << endl;
+	for (auto& row : map) {
+		for (MapEntity*& entity : row) {
+			ActiveMapEntity* activeEntity = dynamic_cast<ActiveMapEntity*>(entity);
+			if (activeEntity != nullptr) {
+				activeEntity->onTick();
+			}
+		}
+	}
+	MapManager::drawMap(map);
 }

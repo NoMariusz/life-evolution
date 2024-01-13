@@ -29,11 +29,42 @@ bool MapManager::generatePlants(MapArrayType& map) {
 		// chek if cell empty
 		if (map[randomX][randomY] != nullptr) continue;
 
-		Plant newPlant = Plant(randomX, randomY, &map);
-		map[randomX][randomY] = &newPlant;
+		Plant *newPlant = new Plant(randomX, randomY, &map);
+		map[randomX][randomY] = newPlant;
 
 		plantsCount--;
 	}
 
 	return true;
+}
+
+void MapManager::drawMap(MapArrayType& map) {
+	cout << "\tMap:" << endl;
+
+	for (int i = 0; i < constants::MAP_WIDTH; i++)
+	{
+		cout << "=";
+	}
+	cout << endl;
+
+
+	for (int y = constants::MAP_HEIGHT-1; y >= 0; y--)
+	{
+		for (auto& column : map) {
+			MapEntity*& entity = column[y];
+			if (entity == nullptr) {
+				cout << " ";
+			}
+			else {
+				entity->drawSign();
+			}
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < constants::MAP_WIDTH; i++)
+	{
+		cout << "=";
+	}
+	cout << endl;
 }
