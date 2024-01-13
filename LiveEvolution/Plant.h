@@ -11,5 +11,6 @@ public:
 	virtual MapEntityType getType() ;
 	virtual void drawSign();
 	virtual void onTick();
+	virtual void onEaten();
 };
 

@@ -1,6 +1,7 @@
 #include "App.h"
 #include "MapManager.h"
 #include "ActiveMapEntity.h"
+#include "Animal.h"
 #include <iostream>
 
 
@@ -19,6 +20,8 @@ void App::start() {
 	// TODO: decision if generate new map or load from a file
 	this->generateMap();
 
+	MapManager::drawMap(map);
+
 	while (1) {
 		sleep(constants::TICK_TIME);
 		this->onTick();
@@ -34,14 +37,7 @@ void App::generateMap()
 void App::onTick()
 {
 	cout << "Tick..." << endl;
-	for (auto& row : map) {
-		for (MapEntity*& entity : row) {
-			ActiveMapEntity* activeEntity = dynamic_cast<ActiveMapEntity*>(entity);
-			if (activeEntity != nullptr) {
-				activeEntity->onTick();
-			}
-		}
-	}
+
 	MapManager::onTick(map);
 	MapManager::drawMap(map);
 }

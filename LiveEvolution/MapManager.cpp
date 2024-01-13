@@ -2,6 +2,7 @@
 #include "Plant.h"
 #include "Animal.h"
 #include "utils.h"
+#include <list>
 
 using namespace std;
 
@@ -50,8 +51,7 @@ bool MapManager::addElementsToMap(MapArrayType& map, int count) {
 		// chek if cell empty
 		if (map[randomX][randomY] != nullptr) continue;
 
-		Entity* newEntity = new Entity(randomX, randomY, &map);
-		map[randomX][randomY] = newEntity;
+		map[randomX][randomY] = new Entity(randomX, randomY, &map);
 
 		tempCount--;
 	}
@@ -95,16 +95,45 @@ void MapManager::drawMap(MapArrayType& map) {
 // on tick
 
 void MapManager::onTick(MapArrayType& map) {
-	// clearing dead entities
-	for (auto& row : map) {
-		for (MapEntity*& entity : row) {
+	// tick animals
+	// store list of animals to later tick them indepently, to not iterate them on original array when animals move senf through the array
+	list<Animal*> animals;
+
+	for (auto& column : map) {
+		for (MapEntity*& entity : column) {
 			ActiveMapEntity* activeEntity = dynamic_cast<ActiveMapEntity*>(entity);
 			if (activeEntity != nullptr) {
-				if (activeEntity->getEnergy() == 0) {
-					delete entity;
-					entity = nullptr;
+				if (activeEntity->getType() == animal) {
+					animals.push_front((Animal*)activeEntity);
+				}
+				else {
+					activeEntity->onTick();
 				}
 			}
 		}
 	}
+	for (auto& animal : animals) {
+		animal->onTick();
+	}
+	// TODO: generate new plants
+}
+
+// Entities utils
+
+bool MapManager::positionInMap(MapArrayType& map, int x, int y) {
+	return x >= 0 && x < constants::MAP_WIDTH && y >= 0 && y < constants::MAP_HEIGHT;
+}
+
+void MapManager::moveTo(MapArrayType& map, int fromX, int fromY, int toX, int toY) {
+	MapEntity* entity = map[fromX][fromY];
+	entity->x = toX;
+	entity->y = toY;
+	map[toX][toY] = entity;
+	map[fromX][fromY] = nullptr;
+	return;
+}
+
+void MapManager::clearFrom(MapArrayType& map, int x, int y) {
+	delete map[x][y];
+	map[x][y] = nullptr;
 }
