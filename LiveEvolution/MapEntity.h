@@ -2,7 +2,7 @@
 
 class MapManager;
 
-enum MapEntityType {animal, plant};
+enum MapEntityType {none, animal, plant};
 
 class MapEntity
 {

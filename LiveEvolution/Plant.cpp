@@ -15,6 +15,8 @@ void Plant::drawSign() {
 }
 
 void Plant::onTick() {
+    if (this->energy == constants::MAX_PLANT_ENERGY) return;
+
     growProgress++;
     if (growProgress > constants::TICKS_TO_PLANT_GROW) {
         this->energy++;

@@ -17,6 +17,10 @@ App::App() {
 
 void App::start() {
 	cout << "Application starting..." << endl;
+
+	// init needed things like random generator seed
+	srand(time(NULL));
+
 	// TODO: decision if generate new map or load from a file
 	this->generateMap();
 

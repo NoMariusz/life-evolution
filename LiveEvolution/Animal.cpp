@@ -11,7 +11,7 @@ MapEntityType Animal::getType()
 
 void Animal::drawSign()
 {
-	cout << "\33[0;91;49m" << hex << this->energy << "\033[0m";
+	cout << "\33[0;91;49m" << (char)(64 + this->energy) << "\033[0m";
 }
 
 void Animal::onTick()
@@ -32,7 +32,7 @@ void Animal::onTick()
 			newX = this->x + dx;
 			newY = this->y + dy;
 			// check if at next cells there is no plant to eat
-			if ((dx == 0 && dy==0) || !MapManager::positionInMap(*this->mapPointer, newX, newY)) continue;
+			if ((dx == 0 && dy==0) || !MapManager::positionInMap(newX, newY)) continue;
 			// eat that plant
 			Plant* possiblePlant = dynamic_cast<Plant*>((*this->mapPointer)[newX][newY]);
 			if (possiblePlant == nullptr) continue;
@@ -53,7 +53,7 @@ void Animal::onTick()
 
 		newX = this->x + floor(randomDouble(-1., 2.));
 		newY = this->y + floor(randomDouble(-1., 2.));
-		if ((newX == this->x && newY == this->y) || !MapManager::positionInMap(*this->mapPointer, newX, newY)) continue;
+		if ((newX == this->x && newY == this->y) || !MapManager::positionInMap(newX, newY)) continue;
 
 		MapManager::moveTo(*this->mapPointer, this->x, this->y, newX, newY);
 		break;

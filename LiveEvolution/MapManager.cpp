@@ -95,7 +95,11 @@ void MapManager::drawMap(MapArrayType& map) {
 // on tick
 
 void MapManager::onTick(MapArrayType& map) {
-	// tick animals
+	MapManager::propagateTickToEntities(map);
+	MapManager::generateNewPlants(map);
+}
+
+void MapManager::propagateTickToEntities(MapArrayType& map) {
 	// store list of animals to later tick them indepently, to not iterate them on original array when animals move senf through the array
 	list<Animal*> animals;
 
@@ -115,12 +119,42 @@ void MapManager::onTick(MapArrayType& map) {
 	for (auto& animal : animals) {
 		animal->onTick();
 	}
-	// TODO: generate new plants
+}
+
+bool MapManager::isTherePlant(MapArrayType& map, int x, int y) {
+	return MapManager::positionInMap(x, y) && map[x][y] != nullptr &&  map[x][y]->getType() == plant;
+
+}
+void MapManager::generateNewPlants(MapArrayType& map) {
+	for (size_t x = 0; x < constants::MAP_WIDTH; ++x) {
+		for (size_t y = 0; y < constants::MAP_HEIGHT; ++y) {
+			MapEntity*& entity = map[x][y];
+
+			if (entity != nullptr) continue;
+
+			// calculate grow chance considering nearby cells
+			double chance = constants::PLANT_TICK_GROW_CHANCE;
+
+			for (int i = -1; i <= 1; i += 2) {
+				for (int j = -1; i <= 1; i += 2) {
+					if (MapManager::isTherePlant(map, x +i, y+j)) {
+						chance = constants::PLANT_TICK_GROW_NEAR_PLANT_CHANCE;
+					}
+				}
+			}
+
+			// make random test if plant will grow
+			if (randomDouble() > chance) continue;
+
+			// grow new plant
+			map[x][y] = new Plant(x, y, &map);
+		}
+	}
 }
 
 // Entities utils
 
-bool MapManager::positionInMap(MapArrayType& map, int x, int y) {
+bool MapManager::positionInMap(int x, int y) {
 	return x >= 0 && x < constants::MAP_WIDTH && y >= 0 && y < constants::MAP_HEIGHT;
 }
 

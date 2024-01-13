@@ -1,13 +1,8 @@
+#pragma once
 #include <iostream>
-
-#include <cmath>
-#include <functional>
-#include <future>
-
-#include <thread>
 
 using namespace std;
 
-double randomDouble(double start, double end);
+double randomDouble(double start = 0., double end = 1.);
 
 void sleep(unsigned milliseconds);
