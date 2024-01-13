@@ -6,10 +6,13 @@ using namespace std;
 
 class ActiveMapEntity : public MapEntity
 {
+protected:
 	MapArrayType* mapPointer;
+	int energy;
 
 public:
-	ActiveMapEntity(int x, int y, MapArrayType* map);
+	int getEnergy();
+	ActiveMapEntity(int x, int y, MapArrayType* map, int energy);
 	virtual void onTick() = 0;
 };
 

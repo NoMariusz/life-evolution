@@ -42,5 +42,6 @@ void App::onTick()
 			}
 		}
 	}
+	MapManager::onTick(map);
 	MapManager::drawMap(map);
 }

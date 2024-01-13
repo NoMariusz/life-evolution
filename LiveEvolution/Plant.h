@@ -4,11 +4,9 @@
 
 class Plant : public ActiveMapEntity
 {
-	int energy;
 	int growProgress;
 public:
 	Plant(int x, int y, MapArrayType* map);
-	int getEnergy();
 
 	virtual MapEntityType getType() ;
 	virtual void drawSign();

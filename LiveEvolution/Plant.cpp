@@ -3,12 +3,7 @@
 
 using namespace std;
 
-Plant::Plant(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map), energy(1), growProgress(0) {};
-
-int Plant::getEnergy()
-{
-    return this->energy;
-}
+Plant::Plant(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map, 1), growProgress(0) {};
 
 MapEntityType Plant::getType() {
     return MapEntityType::plant;
@@ -20,7 +15,7 @@ void Plant::drawSign() {
 
 void Plant::onTick() {
     growProgress++;
-    if (growProgress > constants::TICKS_TO_PLANT_GROW) {
+    if (growProgress > constants::TICKS_TO_PLANT_GROW && this->energy < 9) {
         this->energy++;
         growProgress = 0;
     }
