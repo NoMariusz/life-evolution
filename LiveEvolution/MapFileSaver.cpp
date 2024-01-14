@@ -1,9 +1,7 @@
 #include "MapFileSaver.h"
 #include <fstream>
 
-
 using namespace std;
-
 
 void MapFileSaver::save(MapArrayType& map)
 {
@@ -11,7 +9,7 @@ void MapFileSaver::save(MapArrayType& map)
 
 	// prepare file stream
 	ofstream file;
-	file.open("map_save.txt", ios::in | ios::trunc);
+	file.open(constants::SAVE_FILE_NAME, ios::in | ios::trunc);
 
 	// save map size
 	file << constants::MAP_WIDTH << " " << constants::MAP_HEIGHT << endl;
@@ -20,7 +18,9 @@ void MapFileSaver::save(MapArrayType& map)
 	for (auto& column : map) {
 		for (MapEntity*& entity : column) {
 			if (entity != nullptr) {
+				file << entity->getType() << " ";
 				entity->saveSelf(file);
+				file << endl;
 			}
 		}
 	}

@@ -13,6 +13,8 @@ protected:
 public:
 	int getEnergy();
 	ActiveMapEntity(int x, int y, MapArrayType* map, int energy);
+	ActiveMapEntity(ifstream& file, MapArrayType* map);
 	virtual void onTick() = 0;
+	virtual void saveSelf(ofstream& file);
 };
 

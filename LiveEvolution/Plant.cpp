@@ -4,7 +4,12 @@
 
 using namespace std;
 
-Plant::Plant(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map, 1), growProgress(0) {};
+Plant::Plant(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map, 1), growProgress(0) {}
+
+Plant::Plant(ifstream& file, MapArrayType* map) : ActiveMapEntity(file, map)
+{
+    file >> this->growProgress;
+}
 
 MapEntityType Plant::getType() {
     return MapEntityType::plant;
@@ -31,5 +36,6 @@ void Plant::onEaten() {
 
 void Plant::saveSelf(ofstream& file)
 {
-    file << this->getType() << " " << this->x  << " "  << this->y << " " << this->energy << " " << this->growProgress << endl;
+    ActiveMapEntity::saveSelf(file);
+    file << this->growProgress << " ";
 }

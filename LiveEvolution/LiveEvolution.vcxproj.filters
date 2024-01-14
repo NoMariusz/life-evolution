@@ -19,6 +19,12 @@
     <Filter Include="Source Files\MapEntities">
       <UniqueIdentifier>{6d41f606-a176-4111-93e4-56d65f4a7703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\FileOperations">
+      <UniqueIdentifier>{a0407986-9030-48b6-8fe6-a48f5dbf86e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Fileoperations">
+      <UniqueIdentifier>{4f4c6df7-79bc-410f-bc4e-39b78e9d3f88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LiveEvolution.cpp">
@@ -45,8 +51,11 @@
     <ClCompile Include="Animal.cpp">
       <Filter>Source Files\MapEntities</Filter>
     </ClCompile>
+    <ClCompile Include="MapFileLoader.cpp">
+      <Filter>Source Files\Fileoperations</Filter>
+    </ClCompile>
     <ClCompile Include="MapFileSaver.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Fileoperations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +86,11 @@
     <ClInclude Include="Animal.h">
       <Filter>Header Files\MapEntities</Filter>
     </ClInclude>
+    <ClInclude Include="MapFileLoader.h">
+      <Filter>Header Files\FileOperations</Filter>
+    </ClInclude>
     <ClInclude Include="MapFileSaver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\FileOperations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

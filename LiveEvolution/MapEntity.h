@@ -20,9 +20,10 @@ public:
 	int getY();
 
 	MapEntity(int x, int y);
+	MapEntity(ifstream& file);
 
 	virtual MapEntityType getType() = 0;
 	virtual void drawSign() = 0;
 
-	virtual void saveSelf(ofstream& file) = 0;
+	virtual void saveSelf(ofstream& file);
 };

@@ -2,6 +2,8 @@
 
 namespace constants
 {
+    static const char* SAVE_FILE_NAME = "map_save.txt";
+
     const int MAP_WIDTH = 40;
     const int MAP_HEIGHT = 15;
 

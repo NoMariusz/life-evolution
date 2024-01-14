@@ -2,7 +2,9 @@
 #include "MapManager.h"
 #include "Plant.h"
 
-Animal::Animal(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map, constants::ANIMAL_START_ENERGY) {};
+Animal::Animal(int x, int y, MapArrayType* map) : ActiveMapEntity(x, y, map, constants::ANIMAL_START_ENERGY) {}
+
+Animal::Animal(ifstream& file, MapArrayType* map) : ActiveMapEntity(file, map) {}
 
 MapEntityType Animal::getType()
 {
@@ -58,9 +60,4 @@ void Animal::onTick()
 		MapManager::moveTo(*this->mapPointer, this->x, this->y, newX, newY);
 		break;
 	}
-}
-
-void Animal::saveSelf(ofstream& file)
-{
-	file << this->getType() << " " << this->x << " " << this->y << " " << this->energy << endl;
 }
