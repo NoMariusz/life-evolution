@@ -28,3 +28,8 @@ void Plant::onEaten() {
     this->energy = 0;
     MapManager::clearFrom(*this->mapPointer, this->x, this->y);
 }
+
+void Plant::saveSelf(ofstream& file)
+{
+    file << this->getType() << " " << this->x  << " "  << this->y << " " << this->energy << " " << this->growProgress << endl;
+}

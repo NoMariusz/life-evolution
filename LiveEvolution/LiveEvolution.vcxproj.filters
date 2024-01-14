@@ -45,6 +45,9 @@
     <ClCompile Include="Animal.cpp">
       <Filter>Source Files\MapEntities</Filter>
     </ClCompile>
+    <ClCompile Include="MapFileSaver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Animal.h">
       <Filter>Header Files\MapEntities</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFileSaver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

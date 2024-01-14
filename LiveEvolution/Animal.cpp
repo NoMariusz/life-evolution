@@ -59,3 +59,8 @@ void Animal::onTick()
 		break;
 	}
 }
+
+void Animal::saveSelf(ofstream& file)
+{
+	file << this->getType() << " " << this->x << " " << this->y << " " << this->energy << endl;
+}

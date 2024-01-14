@@ -5,8 +5,9 @@ class Animal : public ActiveMapEntity
 public:
 	Animal(int x, int y, MapArrayType* map);
 
-	virtual MapEntityType getType();
-	virtual void drawSign();
-	virtual void onTick();
+	MapEntityType getType();
+	void drawSign();
+	void onTick();
+	void saveSelf(ofstream& file);
 };
 

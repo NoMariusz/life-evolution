@@ -2,7 +2,12 @@
 #include "MapManager.h"
 #include "ActiveMapEntity.h"
 #include "Animal.h"
+#include "MapFileSaver.h"
 #include <iostream>
+#include <windows.h>
+#include <Winuser.h>
+
+#define ASCI_CODE_S 83
 
 
 using namespace std;
@@ -29,6 +34,10 @@ void App::start() {
 	while (1) {
 		sleep(constants::TICK_TIME);
 		this->onTick();
+		// check if user want to save
+		if (GetAsyncKeyState(ASCI_CODE_S)) {
+			MapFileSaver::save(this->map);
+		}
 	}
 }
 

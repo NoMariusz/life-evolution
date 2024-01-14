@@ -133,6 +133,7 @@
     <ClCompile Include="LiveEvolution.cpp" />
     <ClCompile Include="MapEntity.cpp" />
     <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="MapFileSaver.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="MapEntity.h" />
     <ClInclude Include="MapManager.h" />
+    <ClInclude Include="MapFileSaver.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

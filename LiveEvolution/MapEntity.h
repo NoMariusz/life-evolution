@@ -1,4 +1,8 @@
 #pragma once
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 class MapManager;
 
@@ -19,4 +23,6 @@ public:
 
 	virtual MapEntityType getType() = 0;
 	virtual void drawSign() = 0;
+
+	virtual void saveSelf(ofstream& file) = 0;
 };

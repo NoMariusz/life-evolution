@@ -8,9 +8,10 @@ class Plant : public ActiveMapEntity
 public:
 	Plant(int x, int y, MapArrayType* map);
 
-	virtual MapEntityType getType() ;
-	virtual void drawSign();
-	virtual void onTick();
-	virtual void onEaten();
+	MapEntityType getType() ;
+	void drawSign();
+	void onTick();
+	void onEaten();
+	void saveSelf(ofstream& file);
 };
 
