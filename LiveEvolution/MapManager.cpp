@@ -45,8 +45,8 @@ bool MapManager::addElementsToMap(MapArrayType& map, int count) {
 			return false;
 		}
 
-		int randomX = int(randomDouble(0, constants::MAP_WIDTH));
-		int randomY = int(randomDouble(0, constants::MAP_HEIGHT));
+		int randomX = floor(randomDouble(0, constants::MAP_WIDTH));
+		int randomY = floor(randomDouble(0, constants::MAP_HEIGHT));
 
 		// chek if cell empty
 		if (map[randomX][randomY] != nullptr) continue;
@@ -62,6 +62,9 @@ bool MapManager::addElementsToMap(MapArrayType& map, int count) {
 // drawing map
 
 void MapManager::drawMap(MapArrayType& map) {
+	// set buffering on
+	std::setvbuf(stdout, nullptr, _IOFBF, BUFSIZ);
+
 	cout << "\tMap:" << endl;
 
 	for (int i = 0; i < constants::MAP_WIDTH; i++)
@@ -90,6 +93,11 @@ void MapManager::drawMap(MapArrayType& map) {
 		cout << "=";
 	}
 	cout << endl;
+
+	cout.flush();
+
+	// set buffering off
+	std::setvbuf(stdout, nullptr, _IOLBF, BUFSIZ);
 }
 
 // on tick

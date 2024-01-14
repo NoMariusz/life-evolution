@@ -20,6 +20,9 @@ App::App() {
 			entity = nullptr;
 		}
 	}
+
+	// change streams work to enable buffering control https://stackoverflow.com/questions/796865/can-i-stop-stdcout-flushing-on-n
+	std::ios_base::sync_with_stdio(false);
 }
 
 void App::start() {
